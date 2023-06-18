@@ -1,0 +1,88 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/v1":
+    post:
+      summary: register user
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+        required: true
+    patch:
+      summary: edit news
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+    get:
+      summary: list news
+      responses:
+        '200':
+          description: successful
+    parameters:
+    - name: email
+      in: body
+      required: true
+      schema:
+        type: string
+    - name: password
+      in: body
+      required: true
+      schema:
+        type: string
+    - name: name
+      in: body
+      required: true
+      schema:
+        type: string
+  "/v1/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: info news
+      responses:
+        '200':
+          description: successful
+  "/v1/login":
+    post:
+      summary: auth user
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+  "/v1/me":
+    get:
+      summary: me user
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
